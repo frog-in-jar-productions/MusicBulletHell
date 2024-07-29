@@ -12,18 +12,21 @@ func _process(delta):
 	#idk how to do it yet as i havent had a look at the ui stuff but we should eventually use the menu keyboard action layout options that users can remap
 	var velocity = Vector2.ZERO 
 	if Input.is_action_pressed("move_right"):
-		_animated_sprite.flip_h = false
+#		_animated_sprite.flip_h = false
 		velocity.x += 1
-		_animated_sprite.play("right")
+#		_animated_sprite.play("right")
 	if Input.is_action_pressed("move_left"):
-		_animated_sprite.flip_h = true
-		_animated_sprite.play("right")
+#		_animated_sprite.flip_h = true
+#		_animated_sprite.play("right")
 		velocity.x -= 1
 	if Input.is_action_pressed("move_down"):
+#		_animated_sprite.play("down")
 		velocity.y += 1
 	if Input.is_action_pressed("move_up"):
+#		_animated_sprite.play("up")
 		velocity.y -= 1
-	
+#	if Input.is_action_pressed("move_up") and Input.is_action_pressed("move_right"):
+#		_animated_sprite.play("up_right")
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite2D.play()
