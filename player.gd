@@ -1,4 +1,4 @@
-#need to create new sprites for directions as mirroring didnt work?
+#need to create new sprites for directions as mirroring didnt work - 4 directions might be better than 8? used this as a tutorial: https://www.youtube.com/watch?v=uNReb-MHsbg&t=30s
 
 
 extends CharacterBody2D
