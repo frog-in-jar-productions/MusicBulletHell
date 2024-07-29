@@ -1,20 +1,65 @@
-[gd_scene load_steps=2 format=3 uid="uid://5o11u7fo1e38"]
+[gd_scene load_steps=8 format=3 uid="uid://5o11u7fo1e38"]
 
-[ext_resource type="Texture2D" uid="uid://bjveqo26dwfpj" path="res://Aseprite Files/player placeholder.png" id="1_qc7ip"]
+[ext_resource type="Texture2D" uid="uid://dg3ycaphns8rk" path="res://character_placeholder_right.png" id="1_ddmns"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5pi7"]
+atlas = ExtResource("1_ddmns")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxjx5"]
+atlas = ExtResource("1_ddmns")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7wql"]
+atlas = ExtResource("1_ddmns")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1dgy"]
+atlas = ExtResource("1_ddmns")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bklmd"]
+atlas = ExtResource("1_ddmns")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iblq4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5pi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxjx5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7wql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1dgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bklmd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+metadata/_edit_group_ = true
 
-[node name="right" type="Sprite2D" parent="."]
-texture = ExtResource("1_qc7ip")
-centered = false
-hframes = 6
-vframes = 4
-frame = 11
-
-[node name="left" type="Sprite2D" parent="."]
-texture = ExtResource("1_qc7ip")
-centered = false
-flip_h = true
-hframes = 6
-vframes = 4
-frame = 7
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_iblq4")
+frame = 1
+frame_progress = 0.19749
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://Aseprite Files/character_placeholder_right.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "c61b7c6c6cea855c15bc3a2d855354f2"
