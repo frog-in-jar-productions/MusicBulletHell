@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dp6k50mfi1eo3"
+path="res://.godot/imported/character_placeholder.aseprite-4a46cc16dd85f8779e25cc7680dffaa3.res"
+
+[deps]
+
+source_file="res://Aseprite Files/placeholder tests/character_placeholder.aseprite"
+dest_files=["res://.godot/imported/character_placeholder.aseprite-4a46cc16dd85f8779e25cc7680dffaa3.res"]
+
+[params]
+
