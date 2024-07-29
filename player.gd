@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var _animated_sprite = $AnimatedSprite2D
+
 @export var speed = 400
 var screen_size
 
@@ -10,8 +12,12 @@ func _process(delta):
 	#idk how to do it yet as i havent had a look at the ui stuff but we should eventually use the menu keyboard action layout options that users can remap
 	var velocity = Vector2.ZERO 
 	if Input.is_action_pressed("move_right"):
+		_animated_sprite.flip_h = false
 		velocity.x += 1
+		_animated_sprite.play("right")
 	if Input.is_action_pressed("move_left"):
+		_animated_sprite.flip_h = true
+		_animated_sprite.play("right")
 		velocity.x -= 1
 	if Input.is_action_pressed("move_down"):
 		velocity.y += 1
@@ -21,9 +27,10 @@ func _process(delta):
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite2D.play()
-	else:
-		$AnimatedSprite2D.stop()
 	
+	if velocity.length() == 0:
+		$AnimatedSprite2D.stop()
+		
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
 
