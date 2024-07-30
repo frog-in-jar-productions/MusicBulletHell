@@ -54,6 +54,9 @@ func animate() -> void:
 	animationTree.set(blend_pos_paths[state], blend_position)
 
 
+
+######################################################################
+
 #@onready var _animated_sprite = $AnimatedSprite2D
 
 #@export var speed = 400
@@ -93,24 +96,7 @@ func animate() -> void:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#####################################################
 
 
 #const SPEED = 300.0
