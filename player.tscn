@@ -1273,6 +1273,7 @@ one_shot = true
 
 [node name="DodgeLengthTimer" type="Timer" parent="."]
 wait_time = 0.1
+one_shot = true
 
 [connection signal="timeout" from="DodgeCooldownTimer" to="." method="_on_dodge_timer_timeout"]
 [connection signal="timeout" from="DodgeLengthTimer" to="." method="_on_dodge_length_timer_timeout"]

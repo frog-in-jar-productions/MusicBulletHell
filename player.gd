@@ -33,7 +33,7 @@ var animTree_state_keys = [
 func _physics_process(delta):
 	move(delta)
 	animate()
-	if Input.is_action_just_pressed("dodge") and velocity.length() > 0 and can_dodge == true:
+	if Input.is_action_just_pressed("dodge") and velocity.length() > 0 and can_dodge == true: ##checking that player wants to dodge, isn't stationary and can dodge
 		perform_dodge()
 		
 	
@@ -51,14 +51,14 @@ func move(delta):
 	move_and_slide()
 	
 func perform_dodge():
-	$DodgeCooldownTimer.start(dodge_cooldown)####dodge_cooldown_timer.wait_time = dodge_cooldown##reset DodgeTimer
-	dodging = true
+	$DodgeCooldownTimer.start(dodge_cooldown)##starts the dodge cooldown timer and sets the timer's wait time to dodge_cooldown  ####dodge_cooldown_timer.wait_time = dodge_cooldown             ##reset DodgeTimer
+	dodging = true ##shows the player is now dodging
 	$DodgeLengthTimer.start(dodge_duration)
 	while dodging == true:
 		acceleration = 1200##set acceleration higher then decrease it, max velocity higher
 		max_speed = 400
 	##give i-frames
-	can_dodge = false ##stop from dodging again until cooldown
+	##stop from dodging again until cooldown
 	pass
 
 func apply_friction(amount) -> void:
@@ -77,7 +77,7 @@ func animate() -> void:
 	
 	
 func _on_dodge_cooldown_timer_timeout():
-	var can_dodge = true
+	can_dodge = true
 	
 func _on_dodge_length_timer_timeout():
 	dodging = false
