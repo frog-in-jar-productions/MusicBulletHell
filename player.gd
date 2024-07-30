@@ -1,6 +1,4 @@
 #need to create new sprites for directions as mirroring didnt work - 4 directions might be better than 8? used this as a tutorial: https://www.youtube.com/watch?v=uNReb-MHsbg&t=30s
-
-
 extends CharacterBody2D
 
 
@@ -13,6 +11,7 @@ var state = IDLE
 
 @onready var animationTree = $AnimationTree
 @onready var state_machine = animationTree["parameters/playback"]
+
 
 var blend_position : Vector2 = Vector2.ZERO
 var blend_pos_paths = [
@@ -37,6 +36,7 @@ func move(delta):
 		state = MOVE
 		apply_movement(input_vector * ACCELERATION * delta)
 		blend_position = input_vector
+	
 	move_and_slide()
 
 func apply_friction(amount) -> void:
@@ -52,9 +52,6 @@ func apply_movement(amount) -> void:
 func animate() -> void:
 	state_machine.travel(animTree_state_keys[state])
 	animationTree.set(blend_pos_paths[state], blend_position)
-	
-
-
 
 
 #@onready var _animated_sprite = $AnimatedSprite2D
