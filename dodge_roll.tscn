@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://1ets1p1pdeeg"]
+
+[ext_resource type="Script" path="res://DodgeRoll.gd" id="1_ocqme"]
+
+[node name="DodgeRoll" type="Node2D"]
+script = ExtResource("1_ocqme")
+
+[node name="DodgeRollTimer" type="Timer" parent="."]

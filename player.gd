@@ -2,15 +2,22 @@
 extends CharacterBody2D
 
 
-const ACCELERATION = 800
-const FRICTION = 500
-const MAX_SPEED = 120
+var acceleration = 800
+var friction = 500
+var max_speed = 120
+var can_dodge = true
+var dodge_cooldown = 1.2
+var dodge_duration = 0.4
+var dodging = false
 
 enum {IDLE, MOVE}
 var state = IDLE
 
 @onready var animationTree = $AnimationTree
 @onready var state_machine = animationTree["parameters/playback"]
+
+####@onready var dodge_cooldown_timer = $DodgeCooldownTimer
+####@onready var dodge_duration_timer = $DodgeLengthTimer
 
 
 var blend_position : Vector2 = Vector2.ZERO
@@ -26,18 +33,33 @@ var animTree_state_keys = [
 func _physics_process(delta):
 	move(delta)
 	animate()
+	if Input.is_action_just_pressed("dodge") and velocity.length() > 0 and can_dodge == true:
+		perform_dodge()
+		
+	
 	
 func move(delta):
 	var input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down") #, "move_up_left", "move_up_right", "move_down_left", "move_down_right"
 	if input_vector == Vector2.ZERO:
 		state = IDLE
-		apply_friction(FRICTION * delta)
+		apply_friction(friction * delta)
 	else:
 		state = MOVE
-		apply_movement(input_vector * ACCELERATION * delta)
+		apply_movement(input_vector * acceleration * delta)
 		blend_position = input_vector
 	
 	move_and_slide()
+	
+func perform_dodge():
+	$DodgeCooldownTimer.start(dodge_cooldown)####dodge_cooldown_timer.wait_time = dodge_cooldown##reset DodgeTimer
+	dodging = true
+	$DodgeLengthTimer.start(dodge_duration)
+	while dodging == true:
+		acceleration = 1200##set acceleration higher then decrease it, max velocity higher
+		max_speed = 400
+	##give i-frames
+	can_dodge = false ##stop from dodging again until cooldown
+	pass
 
 func apply_friction(amount) -> void:
 	if velocity.length() > amount:
@@ -47,11 +69,21 @@ func apply_friction(amount) -> void:
 		
 func apply_movement(amount) -> void:
 	velocity += amount
-	velocity = velocity.limit_length(MAX_SPEED)
+	velocity = velocity.limit_length(max_speed)
 	
 func animate() -> void:
 	state_machine.travel(animTree_state_keys[state])
 	animationTree.set(blend_pos_paths[state], blend_position)
+	
+	
+func _on_dodge_cooldown_timer_timeout():
+	var can_dodge = true
+	
+func _on_dodge_length_timer_timeout():
+	dodging = false
+
+	
+
 
 
 
@@ -124,3 +156,9 @@ func animate() -> void:
 #		velocity.x = move_toward(velocity.x, 0, SPEED)
 #
 #	move_and_slide()
+
+
+
+
+
+

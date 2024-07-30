@@ -1267,12 +1267,3 @@ parameters/idle/TimeScale/scale = 1.0
 parameters/idle/idle_bs2d/blend_position = Vector2(-0.0123967, 0.994949)
 parameters/move/TimeScale/scale = 1.0
 parameters/move/move_bs2d/blend_position = Vector2(0.26343, -0.449495)
-
-[node name="DodgeCooldownTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="DodgeLengthTimer" type="Timer" parent="."]
-wait_time = 0.1
-
-[connection signal="timeout" from="DodgeCooldownTimer" to="." method="_on_dodge_timer_timeout"]
-[connection signal="timeout" from="DodgeLengthTimer" to="." method="_on_dodge_length_timer_timeout"]
