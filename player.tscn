@@ -1,4 +1,4 @@
-[gd_scene load_steps=168 format=3 uid="uid://5o11u7fo1e38"]
+[gd_scene load_steps=162 format=3 uid="uid://5o11u7fo1e38"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6b1on"]
 [ext_resource type="Texture2D" uid="uid://yxws2u4u2icc" path="res://Aseprite Files/placeholder tests/character_placeholder.png" id="1_u7oty"]
@@ -1649,13 +1649,6 @@ _data = {
 "roll_dodge_up_right": SubResource("Animation_15b53")
 }
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_x8vas"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_n7nyr"]
-states/BlendTree/node = SubResource("AnimationNodeBlendTree_x8vas")
-states/BlendTree/position = Vector2(362, 32)
-graph_offset = Vector2(-238, -12)
-
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_jebpp"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3x7u2"]
@@ -1787,23 +1780,13 @@ node_connections = [&"TimeScale", 0, &"move_bs2d", &"output", 0, &"TimeScale"]
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ohsfi"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nqp86"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jaf1y"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ss5qc"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i1y52"]
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_y558w"]
 states/Start/position = Vector2(47, 100)
-states/dodge/node = SubResource("AnimationNodeStateMachine_n7nyr")
-states/dodge/position = Vector2(556, 84.899)
 states/idle/node = SubResource("AnimationNodeBlendTree_5jn3n")
 states/idle/position = Vector2(279, -21)
 states/move/node = SubResource("AnimationNodeBlendTree_tsg3e")
 states/move/position = Vector2(265, 176)
-transitions = ["idle", "move", SubResource("AnimationNodeStateMachineTransition_oqas1"), "move", "idle", SubResource("AnimationNodeStateMachineTransition_6jwfu"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_ohsfi"), "idle", "dodge", SubResource("AnimationNodeStateMachineTransition_nqp86"), "dodge", "idle", SubResource("AnimationNodeStateMachineTransition_jaf1y"), "move", "dodge", SubResource("AnimationNodeStateMachineTransition_ss5qc"), "dodge", "move", SubResource("AnimationNodeStateMachineTransition_i1y52")]
+transitions = ["idle", "move", SubResource("AnimationNodeStateMachineTransition_oqas1"), "move", "idle", SubResource("AnimationNodeStateMachineTransition_6jwfu"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_ohsfi")]
 graph_offset = Vector2(-362, -26.101)
 
 [node name="Player" type="CharacterBody2D"]
