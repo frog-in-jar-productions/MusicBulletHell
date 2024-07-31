@@ -18,8 +18,8 @@ var state = IDLE
 @onready var animationTree = $AnimationTree
 @onready var state_machine = animationTree["parameters/playback"]
 
-####@onready var dodge_cooldown_timer = $DodgeCooldownTimer
-####@onready var dodge_duration_timer = $DodgeLengthTimer
+@onready var dodge_cooldown_timer = $DodgeCooldownTimer
+@onready var dodge_duration_timer = $DodgeLengthTimer
 
 
 var blend_position : Vector2 = Vector2.ZERO
@@ -59,9 +59,9 @@ func move(delta):
 	move_and_slide()
 	
 func start_dodge():
-	$DodgeCooldownTimer.start(dodge_cooldown)##starts the dodge cooldown timer and sets the timer's wait time to dodge_cooldown  ####dodge_cooldown_timer.wait_time = dodge_cooldown             ##reset DodgeTimer
+	dodge_cooldown_timer.start(dodge_cooldown)       ##reset DodgeTimer
 	dodging = true ##shows the player is now dodging
-	$DodgeLengthTimer.start(dodge_duration)
+	dodge_duration_timer.start(dodge_duration)
 	
 
 func apply_friction(amount) -> void:
