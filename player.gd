@@ -38,13 +38,13 @@ func _physics_process(delta):
 	if dodging == true:
 		acceleration = 1200##set acceleration higher then decrease it, max velocity higher
 		max_speed = 400
+		##need to make it so that when dodge, velocity changes in the direction that is inputted for the dodge, ie the player can instantly change directions without having to decelerate - friction max? 
 	else:
 		acceleration = total_acceleration
 		max_speed = total_speed
 	if Input.is_action_just_pressed("dodge") and can_dodge == true: ##checking that player wants to dodge, isn't stationary and can dodge
 		start_dodge()
 		
-	
 	
 func move(delta):
 	var input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down") #, "move_up_left", "move_up_right", "move_down_left", "move_down_right"
