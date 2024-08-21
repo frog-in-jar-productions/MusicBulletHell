@@ -38,7 +38,8 @@ func _physics_process(delta):
 	if dodging == true:
 		acceleration = 1200##set acceleration higher then decrease it, max velocity higher
 		max_speed = 400
-		##need to make it so that when dodge, velocity changes in the direction that is inputted for the dodge, ie the player can instantly change directions without having to decelerate - friction max? 
+		##need to make it so that when dodge, velocity changes in the direction that is inputted for the dodge, ie the player can instantly change directions without having to decelerate - friction max?
+		##depending on the dodge, we need to lock it into a singular position. with some classes and their dodges i think continued movement but i-frames is ok but for like the standard dodge roll it probably needs to lock into the dodge direction for the duration of the dodge
 	else:
 		acceleration = total_acceleration
 		max_speed = total_speed
@@ -159,9 +160,3 @@ func _on_dodge_length_timer_timeout():
 #		velocity.x = move_toward(velocity.x, 0, SPEED)
 #
 #	move_and_slide()
-
-
-
-
-
-
