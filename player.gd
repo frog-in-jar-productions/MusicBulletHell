@@ -15,7 +15,7 @@ var dodging = false
 var total_acceleration = 800
 var total_speed = 120 ##total speed will be base speed + class bonus + passive bonus
 
-enum {IDLE, MOVE}
+enum {IDLE, MOVE, DODGE_ROLL}
 var state = IDLE
 
 @onready var animationTree = $AnimationTree
@@ -28,11 +28,13 @@ var state = IDLE
 var blend_position : Vector2 = Vector2.ZERO
 var blend_pos_paths = [
 	"parameters/idle/idle_bs2d/blend_position",
-	"parameters/move/move_bs2d/blend_position"
+	"parameters/move/move_bs2d/blend_position",
+	"parameters/dodge_roll/dodge_roll_bs2/blend_position"
 ]
 var animTree_state_keys = [
 	"idle",
-	"move"
+	"move",
+	"dodge_roll"
 ]
 
 func _physics_process(delta):
@@ -41,6 +43,7 @@ func _physics_process(delta):
 	if dodging == true:
 		acceleration = 1200##set acceleration higher then decrease it, max velocity higher
 		max_speed = 400
+		state = DODGE_ROLL
 		##need to make it so that when dodge, velocity changes in the direction that is inputted for the dodge, ie the player can instantly change directions without having to decelerate - friction max?
 		##depending on the dodge, we need to lock it into a singular position. with some classes and their dodges i think continued movement but i-frames is ok but for like the standard dodge roll it probably needs to lock into the dodge direction for the duration of the dodge
 	else:
@@ -51,11 +54,11 @@ func _physics_process(delta):
 		
 	
 func move(delta):
-	var input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down") #, "move_up_left", "move_up_right", "move_down_left", "move_down_right"
+	var input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down") 
 	if input_vector == Vector2.ZERO:
 		state = IDLE
 		apply_friction(friction * delta)
-	else:
+	elif input_vector != Vector2.ZERO and dodging != true:
 		state = MOVE
 		apply_movement(input_vector * acceleration * delta)
 		blend_position = input_vector
@@ -66,6 +69,7 @@ func start_dodge():
 	dodge_cooldown_timer.start(dodge_cooldown)       ##reset DodgeTimer
 	dodging = true ##shows the player is now dodging
 	dodge_duration_timer.start(dodge_duration)
+	can_dodge = false
 	
 
 func apply_friction(amount) -> void:

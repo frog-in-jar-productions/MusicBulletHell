@@ -1649,53 +1649,53 @@ _data = {
 "roll_dodge_up_right": SubResource("Animation_15b53")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wsggc"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0truv"]
 animation = &"roll_dodge_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lpal6"]
-animation = &"roll_dodge_up"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4g7hs"]
-animation = &"roll_dodge_right"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4kshl"]
-animation = &"roll_dodge_down"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nfn3j"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qpqoa"]
 animation = &"roll_dodge_down_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gcevw"]
-animation = &"roll_dodge_down_right"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ssfj5"]
+animation = &"roll_dodge_down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o27gw"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mhjpc"]
 animation = &"roll_dodge_up_left"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7046k"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7woi8"]
+animation = &"roll_dodge_up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y8q0t"]
 animation = &"roll_dodge_up_right"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lomkm"]
+animation = &"roll_dodge_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n431p"]
+animation = &"roll_dodge_down_right"
+
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_paeo4"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_wsggc")
+blend_point_0/node = SubResource("AnimationNodeAnimation_0truv")
 blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_lpal6")
-blend_point_1/pos = Vector2(0, -1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_4g7hs")
-blend_point_2/pos = Vector2(1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_4kshl")
-blend_point_3/pos = Vector2(0, 1)
-blend_point_4/node = SubResource("AnimationNodeAnimation_nfn3j")
-blend_point_4/pos = Vector2(-1, 1)
-blend_point_5/node = SubResource("AnimationNodeAnimation_gcevw")
-blend_point_5/pos = Vector2(1, 1)
-blend_point_6/node = SubResource("AnimationNodeAnimation_o27gw")
-blend_point_6/pos = Vector2(-1, -1)
-blend_point_7/node = SubResource("AnimationNodeAnimation_7046k")
-blend_point_7/pos = Vector2(1, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_qpqoa")
+blend_point_1/pos = Vector2(-1, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_ssfj5")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_mhjpc")
+blend_point_3/pos = Vector2(-1, -1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_7woi8")
+blend_point_4/pos = Vector2(0, -1)
+blend_point_5/node = SubResource("AnimationNodeAnimation_y8q0t")
+blend_point_5/pos = Vector2(1, -1)
+blend_point_6/node = SubResource("AnimationNodeAnimation_lomkm")
+blend_point_6/pos = Vector2(1, 0)
+blend_point_7/node = SubResource("AnimationNodeAnimation_n431p")
+blend_point_7/pos = Vector2(1, 1)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_yeau1"]
-graph_offset = Vector2(-664, -147)
-nodes/dodge_bs2d/node = SubResource("AnimationNodeBlendSpace2D_paeo4")
-nodes/dodge_bs2d/position = Vector2(-28, 233)
-node_connections = [&"output", 0, &"dodge_bs2d"]
+graph_offset = Vector2(-547, 235)
+nodes/dodge_roll_bs2d/node = SubResource("AnimationNodeBlendSpace2D_paeo4")
+nodes/dodge_roll_bs2d/position = Vector2(-28, 233)
+node_connections = [&"output", 0, &"dodge_roll_bs2d"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_jebpp"]
 
@@ -1838,14 +1838,14 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_y558w"]
 states/Start/position = Vector2(47, 100)
-states/dodge/node = SubResource("AnimationNodeBlendTree_yeau1")
-states/dodge/position = Vector2(444, 58.899)
+states/dodge_roll/node = SubResource("AnimationNodeBlendTree_yeau1")
+states/dodge_roll/position = Vector2(444, 58.899)
 states/idle/node = SubResource("AnimationNodeBlendTree_5jn3n")
 states/idle/position = Vector2(279, -21)
 states/move/node = SubResource("AnimationNodeBlendTree_tsg3e")
 states/move/position = Vector2(265, 176)
-transitions = ["idle", "move", SubResource("AnimationNodeStateMachineTransition_oqas1"), "move", "idle", SubResource("AnimationNodeStateMachineTransition_6jwfu"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_ohsfi"), "move", "dodge", SubResource("AnimationNodeStateMachineTransition_kjxcn"), "dodge", "move", SubResource("AnimationNodeStateMachineTransition_puxdf"), "idle", "dodge", SubResource("AnimationNodeStateMachineTransition_q6ydg"), "dodge", "idle", SubResource("AnimationNodeStateMachineTransition_sq8mw")]
-graph_offset = Vector2(-300, -359.101)
+transitions = ["idle", "move", SubResource("AnimationNodeStateMachineTransition_oqas1"), "move", "idle", SubResource("AnimationNodeStateMachineTransition_6jwfu"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_ohsfi"), "move", "dodge_roll", SubResource("AnimationNodeStateMachineTransition_kjxcn"), "dodge_roll", "move", SubResource("AnimationNodeStateMachineTransition_puxdf"), "idle", "dodge_roll", SubResource("AnimationNodeStateMachineTransition_q6ydg"), "dodge_roll", "idle", SubResource("AnimationNodeStateMachineTransition_sq8mw")]
+graph_offset = Vector2(-374, -51)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_6b1on")
@@ -1881,7 +1881,7 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_y558w")
 anim_player = NodePath("../AnimationPlayer")
-parameters/dodge/dodge_bs2d/blend_position = Vector2(-0.702646, 1.09227)
+parameters/dodge_roll/dodge_roll_bs2d/blend_position = Vector2(-1, 0)
 parameters/idle/TimeScale/scale = 1.0
 parameters/idle/idle_bs2d/blend_position = Vector2(-0.0123967, 0.994949)
 parameters/move/TimeScale/scale = 1.0
