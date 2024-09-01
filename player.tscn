@@ -1,4 +1,4 @@
-[gd_scene load_steps=176 format=3 uid="uid://5o11u7fo1e38"]
+[gd_scene load_steps=177 format=3 uid="uid://5o11u7fo1e38"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6b1on"]
 [ext_resource type="Texture2D" uid="uid://yxws2u4u2icc" path="res://Aseprite Files/placeholder tests/character_placeholder.png" id="1_u7oty"]
@@ -1649,6 +1649,8 @@ _data = {
 "roll_dodge_up_right": SubResource("Animation_15b53")
 }
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_qsbij"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0truv"]
 animation = &"roll_dodge_left"
 
@@ -1690,12 +1692,16 @@ blend_point_6/node = SubResource("AnimationNodeAnimation_4a5fq")
 blend_point_6/pos = Vector2(1, -1)
 blend_point_7/node = SubResource("AnimationNodeAnimation_7y53s")
 blend_point_7/pos = Vector2(1, 1)
+blend_mode = 1
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_yeau1"]
-graph_offset = Vector2(-698, 161.273)
+graph_offset = Vector2(-751.273, 133.975)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_qsbij")
+nodes/TimeScale/position = Vector2(220, 240)
 nodes/dodge_roll_bs2d/node = SubResource("AnimationNodeBlendSpace2D_paeo4")
 nodes/dodge_roll_bs2d/position = Vector2(-28, 233)
-node_connections = [&"output", 0, &"dodge_roll_bs2d"]
+nodes/output/position = Vector2(460, 200)
+node_connections = [&"TimeScale", 0, &"dodge_roll_bs2d", &"output", 0, &"TimeScale"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_jebpp"]
 
@@ -1754,7 +1760,7 @@ blend_mode = 1
 sync = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_5jn3n"]
-graph_offset = Vector2(-630, -121)
+graph_offset = Vector2(-589, 32)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_jebpp")
 nodes/TimeScale/position = Vector2(122.412, 226.089)
 nodes/idle_bs2d/node = SubResource("AnimationNodeBlendSpace2D_gdmvg")
@@ -1814,7 +1820,7 @@ triangles = PackedInt32Array(0, 1, 2, 0, 1, 3, 1, 3, 4, 0, 3, 4, 1, 2, 4, 0, 2, 
 blend_mode = 1
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_tsg3e"]
-graph_offset = Vector2(-583.864, 154.124)
+graph_offset = Vector2(-432.864, 90.124)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_hqywb")
 nodes/TimeScale/position = Vector2(172.423, 248.77)
 nodes/move_bs2d/node = SubResource("AnimationNodeBlendSpace2D_c1pqo")
@@ -1845,7 +1851,7 @@ states/idle/position = Vector2(279, -21)
 states/move/node = SubResource("AnimationNodeBlendTree_tsg3e")
 states/move/position = Vector2(265, 176)
 transitions = ["idle", "move", SubResource("AnimationNodeStateMachineTransition_oqas1"), "move", "idle", SubResource("AnimationNodeStateMachineTransition_6jwfu"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_ohsfi"), "move", "dodge_roll", SubResource("AnimationNodeStateMachineTransition_kjxcn"), "dodge_roll", "move", SubResource("AnimationNodeStateMachineTransition_puxdf"), "idle", "dodge_roll", SubResource("AnimationNodeStateMachineTransition_q6ydg"), "dodge_roll", "idle", SubResource("AnimationNodeStateMachineTransition_sq8mw")]
-graph_offset = Vector2(-374, -51)
+graph_offset = Vector2(-402, -51)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_6b1on")
@@ -1881,6 +1887,7 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_y558w")
 anim_player = NodePath("../AnimationPlayer")
+parameters/dodge_roll/TimeScale/scale = 1.0
 parameters/dodge_roll/dodge_roll_bs2d/blend_position = Vector2(-1, 0)
 parameters/idle/TimeScale/scale = 1.0
 parameters/idle/idle_bs2d/blend_position = Vector2(-0.0123967, 0.994949)
