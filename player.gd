@@ -1,8 +1,10 @@
-#need to create new sprites for directions as mirroring didnt work - 4 directions might be better than 8? used this as a tutorial: https://www.youtube.com/watch?v=uNReb-MHsbg&t=30s
+# used this as a tutorial: https://www.youtube.com/watch?v=uNReb-MHsbg&t=30s
 extends CharacterBody2D
 
 ##current bugs:
-##dodge cooldown isnt working so can dodge again immediately after dodging
+##need to make it so that once they start dodgin they cant stop and that the dodge goes in a specific direction for the duration
+##currently the dodge animations only work in the cardinal directions and make the model dissapear when trying to go up right etc
+##need to make it so that once a dodge starts the animation plays all the way thorugh, i think this will come with locking the character into a specific direction for the duration as currently it can default back to the idle state
 ##my brain - it shid
 
 var acceleration = 800
@@ -29,7 +31,7 @@ var blend_position : Vector2 = Vector2.ZERO
 var blend_pos_paths = [
 	"parameters/idle/idle_bs2d/blend_position",
 	"parameters/move/move_bs2d/blend_position",
-	"parameters/dodge_roll/dodge_roll_bs2/blend_position"
+	"parameters/dodge_roll/dodge_roll_bs2d/blend_position"
 ]
 var animTree_state_keys = [
 	"idle",
@@ -66,10 +68,10 @@ func move(delta):
 	move_and_slide()
 	
 func start_dodge():
-	dodge_cooldown_timer.start(dodge_cooldown)       ##reset DodgeTimer
+	dodge_cooldown_timer.start(dodge_cooldown)     
 	dodging = true ##shows the player is now dodging
 	dodge_duration_timer.start(dodge_duration)
-	can_dodge = false
+	can_dodge = false ##you now cannot dodge until dodge timer resets again
 	
 
 func apply_friction(amount) -> void:
